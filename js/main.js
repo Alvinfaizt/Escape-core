@@ -9,16 +9,25 @@
  * Alur boot: DOMContentLoaded → init() → semua init*()
  */
 
+/* [TAG: CONFIG] Brand — satu sumber nama untuk seluruh UI */
+const BRAND_NAME = "Escape Core";
+
 /* [TAG: CONFIG] Class CSS untuk efek tekan tombol/link */
 const PRESS_CLASS = "is-pressed";
 
+/* [TAG: CONFIG] Offset scroll agar tidak tertutup header tetap */
+const HEADER_SCROLL_OFFSET = 80;
+
 /* [TAG: CONFIG] Rotasi teks status di area AI (elemen .status-ticker) */
 const STATUS_MESSAGES = [
-  "Layanan online — siap membantu Anda",
+  `${BRAND_NAME} online — siap membantu Anda`,
   "Rata-rata balasan chat di bawah 1 menit",
   "Konsultasi pertama gratis",
-  "Sudah membantu banyak UMKM & bisnis lokal",
+  "Paket harga transparan · tanpa biaya tersembunyi",
 ];
+
+/* [TAG: CONFIG] Cegah double-submit saat AI memproses */
+let isChatBusy = false;
 
 /* [TAG: CONFIG] Balasan simulasi AI — diganti API nyata via ai-agent.js nanti */
 const AI_SIMULATED_REPLIES = [
@@ -35,14 +44,17 @@ let aiReplyIndex = 0;
  * [TAG: HELPER] Utilitas scroll & fokus chat
  * ───────────────────────────────────────────────────────────── */
 
-// [TAG: HELPER] Scroll halus ke selector CSS (section #id)
+// [TAG: HELPER] Scroll halus ke section dengan offset header
 function scrollToTarget(selector, options = {}) {
   const target = document.querySelector(selector);
   if (!target) return false;
 
-  target.scrollIntoView({
+  const top =
+    target.getBoundingClientRect().top + window.scrollY - HEADER_SCROLL_OFFSET;
+
+  window.scrollTo({
+    top: Math.max(0, top),
     behavior: "smooth",
-    block: "start",
     ...options,
   });
   return true;
@@ -233,6 +245,8 @@ export function initCtaScrollTargets() {
       if (el.hasAttribute("data-focus-chat") || target === "#ai-consultant") {
         focusChatInput();
       }
+
+      closeMobileMenu();
     };
 
     el.addEventListener("click", handler);
@@ -310,15 +324,33 @@ function simulateAiResponse() {
   });
 }
 
+// [TAG: HELPER] Aktif/nonaktif form chat saat AI memproses
+function setChatBusy(busy) {
+  isChatBusy = busy;
+  const input = document.getElementById("userInput");
+  const sendBtn = document.getElementById("sendBtn");
+  if (input) input.disabled = busy;
+  if (sendBtn) {
+    sendBtn.disabled = busy;
+    sendBtn.setAttribute("aria-busy", busy ? "true" : "false");
+  }
+}
+
 // [TAG: VANILLA-LOGIC] Alur kirim pesan: validasi → user bubble → AI reply
 async function handleSendMessage() {
   const input = document.getElementById("userInput");
   const chatBox = document.getElementById("chatBox");
-  if (!input || !chatBox) return;
+  if (!input || !chatBox || isChatBusy) return;
 
   const text = input.value.trim();
-  if (!text) return;
+  if (!text) {
+    input.focus();
+    input.classList.add("chat-input--error");
+    window.setTimeout(() => input.classList.remove("chat-input--error"), 600);
+    return;
+  }
 
+  setChatBusy(true);
   chatBox.appendChild(createChatBubble(text, "user"));
   input.value = "";
   scrollChatToBottom();
@@ -336,6 +368,8 @@ async function handleSendMessage() {
     );
   } finally {
     scrollChatToBottom();
+    setChatBusy(false);
+    input.focus();
   }
 }
 
@@ -350,7 +384,7 @@ export function initChatbox() {
   if (!chatBox.children.length) {
     chatBox.appendChild(
       createChatBubble(
-        "Halo! Saya asisten digital Syntax Core. Silakan tanya apa saja tentang pembuatan website — misalnya biaya, waktu pengerjaan, atau jenis website yang cocok untuk bisnis Anda.",
+        `Halo! Saya asisten digital ${BRAND_NAME}. Silakan tanya apa saja tentang pembuatan website — misalnya biaya, waktu pengerjaan, atau jenis website yang cocok untuk bisnis Anda.`,
         "ai"
       )
     );

@@ -68,6 +68,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* [TAG: DESIGN-SYSTEM] Scroll anchor — kompensasi header tetap */
+.hero,
+.section,
+.cta {
+  scroll-margin-top: calc(var(--header-height) + 16px);
+}
+
 body {
   margin: 0;
   background-color: var(--color-background);
@@ -229,6 +236,29 @@ button {
   width: 100%;
 }
 
+.btn--sm {
+  padding: 8px 14px;
+  font-size: 0.8125rem;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn--on-dark {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: var(--color-on-surface);
+}
+
+.btn--on-dark:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(0, 229, 255, 0.08);
+}
+
 .btn--primary-lg {
   padding: var(--space-stack-md) var(--space-stack-lg);
 }
@@ -318,13 +348,32 @@ button {
   background: var(--color-accent-soft);
   padding: 6px;
   border-radius: var(--radius-sm);
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));
 }
 
 .site-header__title {
   font-family: var(--font-headline);
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--color-on-background);
+  color: var(--color-on-surface);
+  letter-spacing: -0.02em;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  z-index: 200;
+  padding: 8px 16px;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+  left: var(--space-gutter);
+  top: var(--space-gutter);
 }
 
 .site-header__tagline {
@@ -1078,6 +1127,14 @@ button {
   line-height: 1.6;
 }
 
+.cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-gutter);
+  justify-content: center;
+  margin-top: var(--space-stack-sm);
+}
+
 /* [TAG: DESIGN-SYSTEM] Footer — hak cipta & link */
 .site-footer {
   background-color: var(--color-surface-container-lowest);
@@ -1285,6 +1342,29 @@ body.menu-open {
   box-shadow: var(--color-neon-glow);
 }
 
+.chat-input--error {
+  border-color: #f87171;
+  animation: input-shake 0.4s ease;
+}
+
+@keyframes input-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.chat-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .chat-input::placeholder {
   color: var(--color-on-primary-container);
 }
@@ -1344,6 +1424,11 @@ body.menu-open {
   font-size: var(--text-code-sm);
   color: var(--color-on-surface-variant);
   line-height: 1.55;
+}
+
+.value-prop__link {
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 /* [TAG: DESIGN-SYSTEM] Section Portofolio — #portfolio (mockup proyek) */
@@ -1428,6 +1513,10 @@ body.menu-open {
   font-size: 0.75rem;
   color: var(--color-tertiary);
   font-weight: 600;
+}
+
+.portfolio-card__btn {
+  margin-top: var(--space-stack-sm);
 }
 
 /* [TAG: DESIGN-SYSTEM] Section Pricing — #pricing (3 paket harga) */

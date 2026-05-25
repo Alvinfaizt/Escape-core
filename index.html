@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  [TAG: ARCHITECTURE] index.html — Landing page Syntax Core (HTML5 semantik)
+  [TAG: ARCHITECTURE] index.html — Landing page Escape Core (HTML5 semantik)
   Legenda komentar:
     [TAG: HTML-HEAD]     Meta, title, font & CSS
     [TAG: NAVIGATION]    Header, menu mobile, overlay
@@ -13,7 +13,11 @@
     <!-- [TAG: HTML-HEAD] Informasi dasar halaman -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Syntax Core — Jasa Pembuatan Website Profesional</title>
+    <title>Escape Core — Jasa Pembuatan Website Profesional</title>
+    <meta
+      name="description"
+      content="Escape Core — jasa pembuatan website profesional, responsif, SEO friendly. Paket landing page, company profile, dan e-commerce dengan harga transparan."
+    />
 
     <!-- [TAG: HTML-HEAD] Font & stylesheet — tema Panda Build / Tech-Noir -->
     <link
@@ -27,15 +31,16 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <a class="skip-link" href="#hero">Lewati ke konten utama</a>
     <!-- [TAG: DESIGN-SYSTEM] Efek visual Tech-Noir (dekoratif) -->
     <div class="scanline" aria-hidden="true"></div>
 
     <!-- [TAG: NAVIGATION] Header tetap — logo, link section, CTA -->
     <header class="site-header">
       <div class="container site-header__inner">
-        <a href="#hero" class="site-header__brand">
-          <span class="material-symbols-outlined" aria-hidden="true">language</span>
-          <span class="site-header__title">Syntax Core</span>
+        <a href="#hero" class="site-header__brand" aria-label="Escape Core — Beranda">
+          <span class="material-symbols-outlined" aria-hidden="true">rocket_launch</span>
+          <span class="site-header__title">Escape Core</span>
         </a>
         <nav class="site-header__nav" aria-label="Navigasi utama">
           <a class="is-active" href="#hero">Beranda</a>
@@ -57,9 +62,10 @@
         </button>
         <button
           type="button"
-          class="btn btn--primary"
+          class="btn btn--primary site-header__cta"
           data-scroll-target="#ai-consultant"
           data-focus-chat="true"
+          aria-label="Konsultasi gratis dengan Escape Core"
         >
           Konsultasi Gratis
         </button>
@@ -113,7 +119,7 @@
                 <span class="hero__status-dot-ping"></span>
                 <span class="hero__status-dot-core"></span>
               </span>
-              <span class="hero__badge-text">Jasa website profesional · Indonesia</span>
+              <span class="hero__badge-text">Escape Core · Jasa website profesional</span>
             </div>
             <h1 id="hero-heading" class="hero__title">
               Website Berkualitas untuk
@@ -129,6 +135,7 @@
                 class="btn btn--primary btn--primary-lg"
                 data-scroll-target="#ai-consultant"
                 data-focus-chat="true"
+                aria-label="Mulai konsultasi website dengan Escape Core"
               >
                 Konsultasi Sekarang
               </button>
@@ -136,6 +143,7 @@
                 type="button"
                 class="btn btn--outline"
                 data-scroll-target="#pricing"
+                aria-label="Lihat daftar paket harga"
               >
                 Lihat Paket Harga
               </button>
@@ -150,7 +158,7 @@
                 height="400"
                 loading="lazy"
               />
-              <p class="hero__image-caption">Hasil kerja tim Syntax Core</p>
+              <p class="hero__image-caption">Hasil kerja tim Escape Core</p>
             </div>
           </div>
         </div>
@@ -194,6 +202,14 @@
             <p class="value-prop__desc">
               Paket jelas dari awal. Tidak ada kejutan biaya di tengah jalan.
             </p>
+            <button
+              type="button"
+              class="value-prop__link btn btn--outline btn--sm"
+              data-scroll-target="#pricing"
+              aria-label="Lihat paket harga Escape Core"
+            >
+              Lihat harga
+            </button>
           </article>
         </div>
       </section>
@@ -220,6 +236,16 @@
                   Halaman promosi untuk warung kopi lokal: menu, lokasi, dan tombol WhatsApp.
                 </p>
                 <span class="portfolio-card__tag">UMKM · Landing Page</span>
+                <button
+                  type="button"
+                  class="btn btn--primary btn--sm btn--block portfolio-card__btn"
+                  data-scroll-target="#ai-consultant"
+                  data-focus-chat="true"
+                  data-chat-prefill="Saya tertarik website model Landing Page UMKM seperti Kopi Nusantara."
+                  aria-label="Konsultasi paket landing page UMKM"
+                >
+                  Mau seperti ini
+                </button>
               </div>
             </article>
             <article class="card-border portfolio-card">
@@ -232,6 +258,16 @@
                   Profil perusahaan lengkap: tentang kami, layanan, tim, dan formulir kontak.
                 </p>
                 <span class="portfolio-card__tag">Korporat · Multi-halaman</span>
+                <button
+                  type="button"
+                  class="btn btn--primary btn--sm btn--block portfolio-card__btn"
+                  data-scroll-target="#ai-consultant"
+                  data-focus-chat="true"
+                  data-chat-prefill="Saya butuh website company profile seperti contoh Solusi Digital Indonesia."
+                  aria-label="Konsultasi paket company profile"
+                >
+                  Mau seperti ini
+                </button>
               </div>
             </article>
             <article class="card-border portfolio-card">
@@ -244,6 +280,16 @@
                   Katalog produk, keranjang, dan checkout sederhana untuk toko fashion online.
                 </p>
                 <span class="portfolio-card__tag">Toko Online · E-Commerce</span>
+                <button
+                  type="button"
+                  class="btn btn--outline btn--sm btn--block portfolio-card__btn"
+                  data-scroll-target="#ai-consultant"
+                  data-focus-chat="true"
+                  data-chat-prefill="Saya ingin toko online seperti Fashion Hub Store (E-Commerce)."
+                  aria-label="Konsultasi paket e-commerce"
+                >
+                  Mau seperti ini
+                </button>
               </div>
             </article>
           </div>
@@ -279,7 +325,8 @@
               class="btn btn--primary btn--block"
               data-scroll-target="#ai-consultant"
               data-focus-chat="true"
-              data-chat-prefill="Saya tertarik Paket Landing Page. Bisa jelaskan detailnya?"
+              data-chat-prefill="Saya tertarik Paket Landing Page Escape Core. Bisa jelaskan detailnya?"
+              aria-label="Pilih paket Landing Page Escape Core"
             >
               Pilih Paket Ini
             </button>
@@ -302,7 +349,8 @@
               class="btn btn--primary btn--block"
               data-scroll-target="#ai-consultant"
               data-focus-chat="true"
-              data-chat-prefill="Saya ingin konsultasi Paket Company Profile untuk perusahaan saya."
+              data-chat-prefill="Saya ingin konsultasi Paket Company Profile Escape Core untuk perusahaan saya."
+              aria-label="Pilih paket Company Profile Escape Core"
             >
               Pilih Paket Ini
             </button>
@@ -324,7 +372,8 @@
               class="btn btn--outline btn--block"
               data-scroll-target="#ai-consultant"
               data-focus-chat="true"
-              data-chat-prefill="Saya butuh website toko online (E-Commerce). Mohon estimasi dan fiturnya."
+              data-chat-prefill="Saya butuh website toko online (E-Commerce) dari Escape Core. Mohon estimasi dan fiturnya."
+              aria-label="Konsultasi paket E-Commerce custom Escape Core"
             >
               Konsultasi Custom
             </button>
@@ -349,7 +398,7 @@
                 <span class="material-symbols-outlined" aria-hidden="true">smart_toy</span>
               </div>
               <div>
-                <h3 class="ai-panel__title">Asisten Syntax Core</h3>
+                <h3 class="ai-panel__title">Asisten Escape Core</h3>
                 <p class="ai-panel__desc">Simulasi jawaban instan · Tim manusia melanjutkan untuk penawaran resmi</p>
               </div>
             </div>
@@ -390,7 +439,14 @@
                   autocomplete="off"
                   aria-label="Pesan untuk asisten konsultasi"
                 />
-                <button type="button" id="sendBtn" class="btn btn--primary chat-send-btn">Kirim</button>
+                <button
+                  type="button"
+                  id="sendBtn"
+                  class="btn btn--primary chat-send-btn"
+                  aria-label="Kirim pesan ke asisten Escape Core"
+                >
+                  Kirim
+                </button>
               </div>
             </div>
             <p class="status-ticker" aria-live="polite">Layanan online — siap membantu Anda</p>
@@ -476,7 +532,7 @@
             </button>
             <div class="faq-item__content" id="faq-answer-4" role="region" aria-labelledby="faq-trigger-4">
               <p>
-                Klik &ldquo;Konsultasi Gratis&rdquo;, isi chat di atas, atau pilih paket harga.
+                Klik &ldquo;Konsultasi Gratis&rdquo;, isi chat Escape Core di atas, atau pilih paket harga.
                 Tim kami akan menghubungi Anda untuk briefing singkat dan penawaran resmi.
               </p>
             </div>
@@ -491,14 +547,25 @@
           <p class="cta__desc">
             Konsultasi pertama gratis. Ceritakan kebutuhan bisnis Anda hari ini.
           </p>
-          <button
-            type="button"
-            class="btn btn--cta"
-            data-scroll-target="#ai-consultant"
-            data-focus-chat="true"
-          >
-            Mulai Konsultasi Gratis
-          </button>
+          <div class="cta__actions">
+            <button
+              type="button"
+              class="btn btn--cta"
+              data-scroll-target="#ai-consultant"
+              data-focus-chat="true"
+              aria-label="Mulai konsultasi gratis Escape Core"
+            >
+              Mulai Konsultasi Gratis
+            </button>
+            <button
+              type="button"
+              class="btn btn--outline btn--on-dark"
+              data-scroll-target="#pricing"
+              aria-label="Bandingkan paket harga"
+            >
+              Bandingkan Paket
+            </button>
+          </div>
         </div>
       </section>
     </main>
@@ -507,9 +574,9 @@
     <footer class="site-footer">
       <div class="container site-footer__inner">
         <div>
-          <div class="site-footer__brand">Syntax Core</div>
+          <div class="site-footer__brand">Escape Core</div>
           <p class="site-footer__copy">
-            © 2024 Syntax Core. Jasa pembuatan website profesional untuk bisnis di Indonesia.
+            © 2024 Escape Core. Jasa pembuatan website profesional untuk bisnis di Indonesia.
           </p>
         </div>
         <nav class="site-footer__nav" aria-label="Footer">
@@ -522,7 +589,12 @@
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <span class="material-symbols-outlined" aria-hidden="true">photo_camera</span>
           </a>
-          <a href="https://wa.me" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <a
+            href="https://wa.me/6281234567890?text=Halo%20Escape%20Core%2C%20saya%20ingin%20konsultasi%20pembuatan%20website."
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Hubungi Escape Core via WhatsApp"
+          >
             <span class="material-symbols-outlined" aria-hidden="true">chat</span>
           </a>
           <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">

@@ -1,4 +1,4 @@
-# Legenda Tag Komentar Proyek
+# Escape Core — Legenda Tag Komentar Proyek
 
 <!-- [TAG: ARCHITECTURE] -->
 

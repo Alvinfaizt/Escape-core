@@ -53,7 +53,7 @@ export async function consultAgent(payload = {}, options = {}) {
       },
       body: JSON.stringify({
         action: payload.action ?? "analyze",
-        context: payload.context ?? "syntax-core-landing",
+        context: payload.context ?? "escape-core-landing",
         prompt: payload.prompt ?? "",
         timestamp: new Date().toISOString(),
       }),
