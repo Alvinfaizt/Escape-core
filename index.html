@@ -1,11 +1,21 @@
 <!DOCTYPE html>
+<!--
+  [TAG: ARCHITECTURE] index.html — Landing page Syntax Core (HTML5 semantik)
+  Legenda komentar:
+    [TAG: HTML-HEAD]     Meta, title, font & CSS
+    [TAG: NAVIGATION]    Header, menu mobile, overlay
+    [TAG: SECTION-*]     Blok konten utama di <main>
+    [TAG: FOOTER]        Hak cipta & media sosial
+    [TAG: SCRIPT-LOAD]   Entry point JavaScript
+-->
 <html lang="id">
   <head>
+    <!-- [TAG: HTML-HEAD] Informasi dasar halaman -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Syntax Core — Jasa Pembuatan Website Profesional</title>
 
-    <!-- [TAG: DESIGN-SYSTEM] Panda Build / Tech-Noir -->
+    <!-- [TAG: HTML-HEAD] Font & stylesheet — tema Panda Build / Tech-Noir -->
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -17,9 +27,10 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- [TAG: DESIGN-SYSTEM] Efek visual Tech-Noir (dekoratif) -->
     <div class="scanline" aria-hidden="true"></div>
 
-    <!-- [TAG: DESIGN-SYSTEM] Header -->
+    <!-- [TAG: NAVIGATION] Header tetap — logo, link section, CTA -->
     <header class="site-header">
       <div class="container site-header__inner">
         <a href="#hero" class="site-header__brand">
@@ -55,8 +66,10 @@
       </div>
     </header>
 
+    <!-- [TAG: NAVIGATION] Overlay gelap saat menu mobile terbuka -->
     <div id="menu-overlay" class="menu-overlay" hidden aria-hidden="true"></div>
 
+    <!-- [TAG: NAVIGATION] Drawer menu — hanya tampil di layar kecil -->
     <aside class="mobile-drawer" id="mobile-menu" aria-label="Menu navigasi">
       <div class="mobile-drawer__inner">
         <p class="mobile-drawer__label">Menu</p>
@@ -89,8 +102,9 @@
       </div>
     </aside>
 
+    <!-- [TAG: ARCHITECTURE] Konten utama landing page -->
     <main class="site-main">
-      <!-- [TAG: DESIGN-SYSTEM] HERO -->
+      <!-- [TAG: SECTION-HERO] Judul utama, deskripsi, tombol CTA ke konsultasi & harga -->
       <section class="hero" id="hero" aria-labelledby="hero-heading">
         <div class="hero__content container">
           <div class="hero__copy">
@@ -142,7 +156,7 @@
         </div>
       </section>
 
-      <!-- [TAG: DESIGN-SYSTEM] VALUE PROPOSITION -->
+      <!-- [TAG: SECTION-VALUE-PROPS] Pain points — keunggulan (cepat, SEO, responsive, harga) -->
       <section class="section section--contained" id="value-props">
         <div class="section__header">
           <div>
@@ -184,7 +198,7 @@
         </div>
       </section>
 
-      <!-- [TAG: DESIGN-SYSTEM] PORTFOLIO -->
+      <!-- [TAG: SECTION-PORTFOLIO] Showcase mockup hasil kerja (UMKM, company, e-commerce) -->
       <section class="section section--alt" id="portfolio">
         <div class="container">
           <div class="section__header section__header--center">
@@ -236,7 +250,7 @@
         </div>
       </section>
 
-      <!-- [TAG: DESIGN-SYSTEM] PRICING -->
+      <!-- [TAG: SECTION-PRICING] 3 paket harga — tombol terhubung ke chat #ai-consultant -->
       <section class="section section--contained" id="pricing">
         <div class="section__header section__header--center">
           <div>
@@ -318,7 +332,7 @@
         </div>
       </section>
 
-      <!-- [TAG: DESIGN-SYSTEM] AI CONSULTANT -->
+      <!-- [TAG: SECTION-AI-CONSULTANT] Chatbox — #chatBox, #userInput, #sendBtn -->
       <section class="section section--alt" id="ai-consultant">
         <div class="container">
           <div class="section__header section__header--center">
@@ -384,7 +398,7 @@
         </div>
       </section>
 
-      <!-- [TAG: DESIGN-SYSTEM] FAQ -->
+      <!-- [TAG: SECTION-FAQ] Accordion pertanyaan umum — dikontrol oleh initFaqAccordion() -->
       <section class="section section--contained" id="faq">
         <div class="section__header section__header--center">
           <div>
@@ -470,7 +484,7 @@
         </div>
       </section>
 
-      <!-- [TAG: DESIGN-SYSTEM] CTA akhir -->
+      <!-- [TAG: SECTION-CTA] Ajakan akhir sebelum footer — scroll ke konsultasi -->
       <section class="cta">
         <div class="cta__inner container">
           <h2 class="cta__title">Siap Wujudkan Website Impian Anda?</h2>
@@ -489,7 +503,7 @@
       </section>
     </main>
 
-    <!-- [TAG: DESIGN-SYSTEM] Footer -->
+    <!-- [TAG: FOOTER] Hak cipta, link internal, media sosial -->
     <footer class="site-footer">
       <div class="container site-footer__inner">
         <div>
@@ -518,6 +532,7 @@
       </div>
     </footer>
 
+    <!-- [TAG: SCRIPT-LOAD] Modul utama — navigasi, chat, FAQ, tombol CTA -->
     <script type="module" src="js/main.js"></script>
   </body>
 </html>

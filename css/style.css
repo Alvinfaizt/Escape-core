@@ -1,5 +1,14 @@
-/* [TAG: DESIGN-SYSTEM] Panda Build / Tech-Noir — high contrast, mobile-first */
+/*
+ * [TAG: ARCHITECTURE] style.css — Satu file styling (Vanilla CSS, mobile-first)
+ *
+ * Legenda komentar:
+ *   [TAG: DESIGN-SYSTEM]  Token warna, komponen UI, layout section
+ *   [TAG: RESPONSIVE]     Media query breakpoint
+ *
+ * Urutan: Reset → Token → Typography → Layout → Komponen → Section landing page
+ */
 
+/* [TAG: DESIGN-SYSTEM] Token global — Panda Build / Tech-Noir */
 :root {
   --color-background: #0b0b0b;
   --color-on-background: #f5f5f5;
@@ -48,6 +57,7 @@
   --bp-lg: 1024px;
 }
 
+/* [TAG: DESIGN-SYSTEM] Reset & dasar dokumen */
 *,
 *::before,
 *::after {
@@ -91,7 +101,7 @@ button {
   background: none;
 }
 
-/* —— Typography —— */
+/* [TAG: DESIGN-SYSTEM] Kelas tipografi utilitas */
 .type-label {
   font-family: var(--font-body);
   font-size: var(--text-code-sm);
@@ -127,7 +137,7 @@ button {
   line-height: 1.2;
 }
 
-/* —— Layout —— */
+/* [TAG: DESIGN-SYSTEM] Layout — wrapper konten berjenjang lebar */
 .container {
   width: 100%;
   max-width: var(--max-width);
@@ -135,7 +145,7 @@ button {
   padding-inline: var(--space-gutter);
 }
 
-/* —— Components —— */
+/* [TAG: DESIGN-SYSTEM] Komponen global — kartu, ikon, efek Tech-Noir */
 .scanline {
   position: fixed;
   top: 0;
@@ -183,7 +193,7 @@ button {
   font-size: 2.25rem;
 }
 
-/* Buttons */
+/* [TAG: DESIGN-SYSTEM] Tombol — primary (neon), outline, CTA, ghost */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -276,7 +286,7 @@ button {
   color: var(--color-primary);
 }
 
-/* —— Header —— */
+/* [TAG: DESIGN-SYSTEM] Header tetap — navigasi desktop */
 .site-header {
   position: fixed;
   top: 0;
@@ -357,13 +367,14 @@ button {
   text-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
 }
 
+/* [TAG: RESPONSIVE] Tampilkan nav desktop dari 768px */
 @media (min-width: 768px) {
   .site-header__nav {
     display: flex;
   }
 }
 
-/* —— Mobile drawer —— */
+/* [TAG: DESIGN-SYSTEM] Menu mobile — drawer + overlay */
 .mobile-drawer {
   position: fixed;
   inset-block: 0;
@@ -422,18 +433,19 @@ button {
   border-left: 3px solid var(--color-primary);
 }
 
+/* [TAG: RESPONSIVE] Sembunyikan drawer di desktop */
 @media (min-width: 768px) {
   .mobile-drawer {
     display: none;
   }
 }
 
-/* —— Main —— */
+/* [TAG: DESIGN-SYSTEM] Wrapper <main> */
 .site-main {
   padding-top: var(--header-height);
 }
 
-/* —— Hero —— */
+/* [TAG: DESIGN-SYSTEM] Section Hero — #hero */
 .hero {
   position: relative;
   min-height: auto;
@@ -617,7 +629,7 @@ button {
   text-align: center;
 }
 
-/* —— Section shared —— */
+/* [TAG: DESIGN-SYSTEM] Section umum — header, subtitle, variasi latar */
 .section {
   padding-block: var(--space-stack-lg);
   padding-inline: var(--space-gutter);
@@ -703,7 +715,7 @@ button {
   white-space: nowrap;
 }
 
-/* —— Services —— */
+/* [TAG: DESIGN-SYSTEM] Grid layanan (legacy) — masih dipakai jika ada .services__grid */
 .services__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -781,7 +793,7 @@ button {
   }
 }
 
-/* —— AI Bento —— */
+/* [TAG: DESIGN-SYSTEM] Layout bento AI (legacy grid samping) */
 .bento {
   display: grid;
   grid-template-columns: 1fr;
@@ -984,7 +996,7 @@ button {
   }
 }
 
-/* —— Protocols —— */
+/* [TAG: DESIGN-SYSTEM] Grid keunggulan protocols (legacy) */
 .protocols__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1032,7 +1044,7 @@ button {
   line-height: 1.6;
 }
 
-/* —— CTA —— */
+/* [TAG: DESIGN-SYSTEM] Section CTA akhir — ajakan konsultasi */
 .cta {
   padding-block: var(--space-stack-lg);
   padding-inline: var(--space-gutter);
@@ -1066,7 +1078,7 @@ button {
   line-height: 1.6;
 }
 
-/* —— Footer —— */
+/* [TAG: DESIGN-SYSTEM] Footer — hak cipta & link */
 .site-footer {
   background-color: var(--color-surface-container-lowest);
   border-top: 1px solid var(--color-on-secondary-fixed-variant);
@@ -1118,13 +1130,13 @@ button {
   color: var(--color-primary);
 }
 
-/* Micro-interaction helper (applied via JS) */
+/* [TAG: DESIGN-SYSTEM] State JS — class .is-pressed dari initMicroInteractions() */
 .is-pressed {
   opacity: 0.8;
   transform: scale(0.95);
 }
 
-/* —— Mobile menu toggle & overlay —— */
+/* [TAG: DESIGN-SYSTEM] Tombol hamburger & overlay menu mobile */
 .site-header__menu-toggle {
   display: flex;
   align-items: center;
@@ -1175,7 +1187,7 @@ body.menu-open {
   outline-offset: 2px;
 }
 
-/* —— AI Chat panel —— */
+/* [TAG: DESIGN-SYSTEM] Panel chat — #chatBox, #userInput, bubble pesan */
 .chat-panel {
   margin-top: var(--space-stack-sm);
   display: flex;
@@ -1282,7 +1294,7 @@ body.menu-open {
   white-space: nowrap;
 }
 
-/* [TAG: DESIGN-SYSTEM] Value proposition grid */
+/* [TAG: DESIGN-SYSTEM] Section Value Props — #value-props (4 kartu keunggulan) */
 .value-props__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1334,7 +1346,7 @@ body.menu-open {
   line-height: 1.55;
 }
 
-/* [TAG: DESIGN-SYSTEM] Portfolio showcase */
+/* [TAG: DESIGN-SYSTEM] Section Portofolio — #portfolio (mockup proyek) */
 .portfolio__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1418,7 +1430,7 @@ body.menu-open {
   font-weight: 600;
 }
 
-/* [TAG: DESIGN-SYSTEM] Pricing packages */
+/* [TAG: DESIGN-SYSTEM] Section Pricing — #pricing (3 paket harga) */
 .pricing__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1508,7 +1520,7 @@ body.menu-open {
   margin-top: auto;
 }
 
-/* [TAG: DESIGN-SYSTEM] AI consultant panel */
+/* [TAG: DESIGN-SYSTEM] Section AI Consultant — #ai-consultant (panel chat) */
 .ai-panel {
   padding: var(--space-stack-md);
   display: flex;
@@ -1544,7 +1556,7 @@ body.menu-open {
   font-weight: 600;
 }
 
-/* [TAG: DESIGN-SYSTEM] FAQ accordion */
+/* [TAG: DESIGN-SYSTEM] Section FAQ — #faq (accordion buka/tutup) */
 .faq__list {
   display: flex;
   flex-direction: column;
@@ -1605,7 +1617,7 @@ body.menu-open {
   padding-bottom: var(--space-stack-md);
 }
 
-/* [TAG: DESIGN-SYSTEM] Footer social */
+/* [TAG: DESIGN-SYSTEM] Footer — ikon media sosial */
 .site-footer__inner {
   flex-wrap: wrap;
 }

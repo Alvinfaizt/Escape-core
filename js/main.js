@@ -1,7 +1,18 @@
-/* [TAG: VANILLA-LOGIC] Entry point — UI interactions & DOM */
+/*
+ * [TAG: ARCHITECTURE] main.js — Entry point interaksi UI (Vanilla JS, ES Module)
+ *
+ * Legenda:
+ *   [TAG: VANILLA-LOGIC]  Fungsi yang dijalankan di browser (DOM, event, scroll)
+ *   [TAG: CONFIG]         Konstanta teks & state aplikasi
+ *   [TAG: HELPER]         Utilitas internal (scroll, fokus chat)
+ *
+ * Alur boot: DOMContentLoaded → init() → semua init*()
+ */
 
+/* [TAG: CONFIG] Class CSS untuk efek tekan tombol/link */
 const PRESS_CLASS = "is-pressed";
 
+/* [TAG: CONFIG] Rotasi teks status di area AI (elemen .status-ticker) */
 const STATUS_MESSAGES = [
   "Layanan online — siap membantu Anda",
   "Rata-rata balasan chat di bawah 1 menit",
@@ -9,6 +20,7 @@ const STATUS_MESSAGES = [
   "Sudah membantu banyak UMKM & bisnis lokal",
 ];
 
+/* [TAG: CONFIG] Balasan simulasi AI — diganti API nyata via ai-agent.js nanti */
 const AI_SIMULATED_REPLIES = [
   "Terima kasih sudah menghubungi kami! Ceritakan sedikit tentang bisnis Anda — misalnya jualan apa dan di kota mana — supaya kami bisa kasih saran yang pas.",
   "Untuk website sederhana (profil usaha + kontak + galeri), biasanya selesai sekitar 2–4 minggu. Harga menyesuaikan fitur yang Anda butuhkan.",
@@ -16,15 +28,14 @@ const AI_SIMULATED_REPLIES = [
   "Langkah berikutnya: tim kami akan hubungi Anda untuk penawaran resmi. Boleh lanjut tulis pertanyaan lain di sini.",
 ];
 
+/* [TAG: CONFIG] Indeks rotasi balasan simulasi */
 let aiReplyIndex = 0;
 
-// —— Shared helpers ——
+/* ─────────────────────────────────────────────────────────────
+ * [TAG: HELPER] Utilitas scroll & fokus chat
+ * ───────────────────────────────────────────────────────────── */
 
-/**
- * Scroll ke elemen target dengan smooth behavior native.
- * @param {string} selector
- * @param {ScrollIntoViewOptions} [options]
- */
+// [TAG: HELPER] Scroll halus ke selector CSS (section #id)
 function scrollToTarget(selector, options = {}) {
   const target = document.querySelector(selector);
   if (!target) return false;
@@ -37,9 +48,7 @@ function scrollToTarget(selector, options = {}) {
   return true;
 }
 
-/**
- * Fokus ke input chat setelah scroll selesai.
- */
+// [TAG: HELPER] Fokus kursor ke input chat setelah scroll ke #ai-consultant
 function focusChatInput(delayMs = 400) {
   const input = document.getElementById("userInput");
   if (!input) return;
@@ -49,16 +58,16 @@ function focusChatInput(delayMs = 400) {
   }, delayMs);
 }
 
-/**
- * Gulir chatbox ke pesan terbaru.
- */
+// [TAG: HELPER] Auto-scroll chatbox ke pesan terbaru
 function scrollChatToBottom() {
   const chatBox = document.getElementById("chatBox");
   if (!chatBox) return;
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// —— 1. Micro-interactions ——
+/* ─────────────────────────────────────────────────────────────
+ * [TAG: VANILLA-LOGIC] Micro-interactions — feedback klik tombol/link
+ * ───────────────────────────────────────────────────────────── */
 
 // [TAG: VANILLA-LOGIC]
 export function initMicroInteractions(root = document) {
@@ -79,6 +88,10 @@ export function initMicroInteractions(root = document) {
   });
 }
 
+/* ─────────────────────────────────────────────────────────────
+ * [TAG: VANILLA-LOGIC] Status ticker — teks berganti di panel AI
+ * ───────────────────────────────────────────────────────────── */
+
 // [TAG: VANILLA-LOGIC]
 export function initStatusTicker(intervalMs = 3000) {
   const statusEl = document.querySelector(".status-ticker");
@@ -91,7 +104,9 @@ export function initStatusTicker(intervalMs = 3000) {
   }, intervalMs);
 }
 
-// —— 2. Smooth scroll & anchor navigation ——
+/* ─────────────────────────────────────────────────────────────
+ * [TAG: VANILLA-LOGIC] Smooth scroll — semua link anchor href="#..."
+ * ───────────────────────────────────────────────────────────── */
 
 // [TAG: VANILLA-LOGIC]
 export function initSmoothScroll() {
@@ -118,10 +133,7 @@ export function initSmoothScroll() {
   });
 }
 
-/**
- * Sorot link nav desktop yang sesuai hash aktif.
- * @param {string} hash
- */
+// [TAG: HELPER] Sorot link nav header yang sesuai section aktif
 function updateActiveNavLink(hash) {
   const navLinks = document.querySelectorAll(".site-header__nav a[href^='#']");
   navLinks.forEach((link) => {
@@ -130,7 +142,9 @@ function updateActiveNavLink(hash) {
   });
 }
 
-// —— 3. Mobile menu ——
+/* ─────────────────────────────────────────────────────────────
+ * [TAG: VANILLA-LOGIC] Menu mobile — hamburger #menu-toggle
+ * ───────────────────────────────────────────────────────────── */
 
 // [TAG: VANILLA-LOGIC]
 export function initMobileMenu() {
@@ -184,13 +198,17 @@ export function initMobileMenu() {
   });
 }
 
+// [TAG: HELPER] Dipanggil dari smooth scroll agar drawer tertutup
 function closeMobileMenu() {
   if (typeof window.closeMobileMenu === "function") {
     window.closeMobileMenu();
   }
 }
 
-// —— 4. CTA & scroll-to-AI ——
+/* ─────────────────────────────────────────────────────────────
+ * [TAG: VANILLA-LOGIC] Tombol CTA — atribut data-scroll-target
+ * Hero, pricing, paket: scroll + prefill + focus #userInput
+ * ───────────────────────────────────────────────────────────── */
 
 // [TAG: VANILLA-LOGIC]
 export function initCtaScrollTargets() {
@@ -230,7 +248,9 @@ export function initCtaScrollTargets() {
   });
 }
 
-// —— 5. AI Consultant quick actions ——
+/* ─────────────────────────────────────────────────────────────
+ * [TAG: VANILLA-LOGIC] Tombol pintasan AI — data-ai-action (opsional)
+ * ───────────────────────────────────────────────────────────── */
 
 // [TAG: VANILLA-LOGIC]
 export function initAiConsultantTriggers() {
@@ -247,9 +267,12 @@ export function initAiConsultantTriggers() {
   });
 }
 
-// —— 6. Chatbox ——
+/* ─────────────────────────────────────────────────────────────
+ * [TAG: VANILLA-LOGIC] Chatbox — #sendBtn, #userInput, #chatBox
+ * Validasi → bubble user → loading → simulasi jawaban AI
+ * ───────────────────────────────────────────────────────────── */
 
-// [TAG: VANILLA-LOGIC]
+// [TAG: VANILLA-LOGIC] Membuat elemen bubble pesan di DOM
 function createChatBubble(text, variant) {
   const bubble = document.createElement("div");
   bubble.className = `chat-message chat-message--${variant}`;
@@ -257,7 +280,7 @@ function createChatBubble(text, variant) {
   return bubble;
 }
 
-// [TAG: VANILLA-LOGIC]
+// [TAG: VANILLA-LOGIC] Indikator "AI sedang menganalisis..."
 function showTypingIndicator() {
   const chatBox = document.getElementById("chatBox");
   if (!chatBox) return null;
@@ -269,13 +292,13 @@ function showTypingIndicator() {
   return typing;
 }
 
-// [TAG: VANILLA-LOGIC]
+// [TAG: VANILLA-LOGIC] Hapus indikator loading sebelum tampilkan jawaban
 function removeTypingIndicator() {
   const typing = document.querySelector("#chatBox [data-typing='true']");
   if (typing) typing.remove();
 }
 
-// [TAG: VANILLA-LOGIC]
+// [TAG: VANILLA-LOGIC] Placeholder API — setTimeout sebelum integrasi ai-agent.js
 function simulateAiResponse() {
   return new Promise((resolve) => {
     const reply = AI_SIMULATED_REPLIES[aiReplyIndex % AI_SIMULATED_REPLIES.length];
@@ -287,7 +310,7 @@ function simulateAiResponse() {
   });
 }
 
-// [TAG: VANILLA-LOGIC]
+// [TAG: VANILLA-LOGIC] Alur kirim pesan: validasi → user bubble → AI reply
 async function handleSendMessage() {
   const input = document.getElementById("userInput");
   const chatBox = document.getElementById("chatBox");
@@ -300,7 +323,7 @@ async function handleSendMessage() {
   input.value = "";
   scrollChatToBottom();
 
-  const typingEl = showTypingIndicator();
+  showTypingIndicator();
 
   try {
     const reply = await simulateAiResponse();
@@ -316,7 +339,7 @@ async function handleSendMessage() {
   }
 }
 
-// [TAG: VANILLA-LOGIC]
+// [TAG: VANILLA-LOGIC] Pasang event Kirim + Enter pada input chat
 export function initChatbox() {
   const sendBtn = document.getElementById("sendBtn");
   const userInput = document.getElementById("userInput");
@@ -345,7 +368,10 @@ export function initChatbox() {
   });
 }
 
-// —— 7. FAQ Accordion ——
+/* ─────────────────────────────────────────────────────────────
+ * [TAG: VANILLA-LOGIC] FAQ accordion — section #faq
+ * Klik pertanyaan → buka/tutup jawaban (satu terbuka)
+ * ───────────────────────────────────────────────────────────── */
 
 // [TAG: VANILLA-LOGIC]
 export function initFaqAccordion() {
@@ -385,8 +411,11 @@ export function initFaqAccordion() {
   });
 }
 
-// —— Boot ——
+/* ─────────────────────────────────────────────────────────────
+ * [TAG: VANILLA-LOGIC] Boot — inisialisasi semua modul UI
+ * ───────────────────────────────────────────────────────────── */
 
+// [TAG: VANILLA-LOGIC]
 function init() {
   initMicroInteractions();
   initStatusTicker();
