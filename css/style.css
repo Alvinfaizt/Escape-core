@@ -89,6 +89,23 @@ body {
   overflow-x: hidden;
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  z-index: 0;
+}
+
+/* [TAG: DESIGN-SYSTEM] Tech-Noir Ambient Glow */
+body::before {
+  content: "";
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150vw;
+  height: 80vh;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, rgba(0, 229, 255, 0) 65%);
+  filter: blur(140px);
+  z-index: -1;
+  pointer-events: none;
 }
 
 body ::selection {
@@ -183,7 +200,7 @@ button {
   font-weight: 300;
 }
 
-/* [TAG: DESIGN-SYSTEM] Tombol minimal — tanpa glow, transisi halus */
+/* [TAG: DESIGN-SYSTEM] Tombol Tech-Noir — minimalis, tajam, keren */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -192,11 +209,12 @@ button {
   font-family: var(--font-body);
   font-size: var(--text-code-sm);
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   line-height: 1.2;
   border-radius: var(--radius-sm);
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.2s ease;
 }
 
 .btn:active {
@@ -204,15 +222,16 @@ button {
 }
 
 .btn--primary {
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
+  background-color: transparent;
+  color: var(--color-primary);
   border: 1px solid var(--color-primary);
-  padding: 12px 24px;
+  padding: 8px 18px;
 }
 
 .btn--primary:hover {
-  background-color: transparent;
-  color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: 0 0 15px rgba(240, 238, 235, 0.2);
 }
 
 .btn--block {
@@ -220,8 +239,8 @@ button {
 }
 
 .btn--sm {
-  padding: 8px 14px;
-  font-size: 0.8125rem;
+  padding: 6px 12px;
+  font-size: 0.75rem;
 }
 
 .btn:disabled {
@@ -232,72 +251,77 @@ button {
 }
 
 .btn--on-dark {
-  border-color: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   color: var(--color-on-surface);
+  background-color: transparent;
 }
 
 .btn--on-dark:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  background: rgba(0, 229, 255, 0.08);
+  border-color: #00e5ff;
+  color: #00e5ff;
+  background-color: rgba(0, 229, 255, 0.05);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
 }
 
 .btn--primary-lg {
-  padding: var(--space-stack-md) var(--space-stack-lg);
+  padding: 12px 24px;
 }
 
 .btn--outline {
   border: 1px solid var(--color-on-surface-variant);
   color: var(--color-on-surface);
   background-color: transparent;
-  padding: var(--space-stack-md) var(--space-stack-lg);
+  padding: 10px 20px;
 }
 
 .btn--outline:hover {
   border-color: var(--color-on-surface);
   color: var(--color-on-surface);
-  background-color: var(--color-accent-soft);
+  background-color: rgba(240, 238, 235, 0.05);
+  box-shadow: 0 0 10px rgba(240, 238, 235, 0.1);
 }
 
 .btn--cta {
   margin-top: 0;
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
+  background-color: transparent;
+  color: var(--color-primary);
   font-family: var(--font-body);
   font-size: var(--text-code-sm);
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 14px 28px;
+  padding: 10px 20px;
   border: 1px solid var(--color-primary);
 }
 
 .btn--cta:hover {
-  background-color: transparent;
-  color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: 0 0 20px rgba(240, 238, 235, 0.25);
 }
 
 .btn--ghost {
   width: 100%;
   text-align: left;
-  padding: 14px 16px;
+  padding: 10px 14px;
   border: 1px solid var(--color-on-secondary-fixed-variant);
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--color-on-surface);
-  background-color: var(--color-surface-variant);
+  background-color: transparent;
   border-radius: var(--radius-sm);
-  transition: border-color 0.15s, background-color 0.15s;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s, color 0.2s;
 }
 
 .btn--ghost:hover {
-  border-color: var(--color-on-surface-variant);
-  background-color: var(--color-accent-soft);
+  border-color: var(--color-primary);
+  background-color: rgba(240, 238, 235, 0.05);
+  box-shadow: 0 0 10px rgba(240, 238, 235, 0.1);
 }
 
 .btn--ghost:hover .material-symbols-outlined {
-  color: var(--color-on-surface);
+  color: var(--color-primary);
 }
 
 /* [TAG: DESIGN-SYSTEM] Header tetap — navigasi desktop */
