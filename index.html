@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Syntax Core — Jasa Pembuatan Website Profesional</title>
+
+    <!-- [TAG: DESIGN-SYSTEM] Panda Build / Tech-Noir -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="scanline" aria-hidden="true"></div>
+
+    <!-- [TAG: DESIGN-SYSTEM] Header -->
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a href="#hero" class="site-header__brand">
+          <span class="material-symbols-outlined" aria-hidden="true">language</span>
+          <span class="site-header__title">Syntax Core</span>
+        </a>
+        <nav class="site-header__nav" aria-label="Navigasi utama">
+          <a class="is-active" href="#hero">Beranda</a>
+          <a href="#value-props">Keunggulan</a>
+          <a href="#portfolio">Portofolio</a>
+          <a href="#pricing">Harga</a>
+          <a href="#faq">FAQ</a>
+          <a href="#ai-consultant">Konsultasi</a>
+        </nav>
+        <button
+          type="button"
+          id="menu-toggle"
+          class="site-header__menu-toggle"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        </button>
+        <button
+          type="button"
+          class="btn btn--primary"
+          data-scroll-target="#ai-consultant"
+          data-focus-chat="true"
+        >
+          Konsultasi Gratis
+        </button>
+      </div>
+    </header>
+
+    <div id="menu-overlay" class="menu-overlay" hidden aria-hidden="true"></div>
+
+    <aside class="mobile-drawer" id="mobile-menu" aria-label="Menu navigasi">
+      <div class="mobile-drawer__inner">
+        <p class="mobile-drawer__label">Menu</p>
+        <nav class="mobile-drawer__nav">
+          <a class="mobile-drawer__link mobile-drawer__link--active" href="#hero">
+            <span class="material-symbols-outlined" aria-hidden="true">home</span>
+            <span>Beranda</span>
+          </a>
+          <a class="mobile-drawer__link" href="#value-props">
+            <span class="material-symbols-outlined" aria-hidden="true">verified</span>
+            <span>Keunggulan</span>
+          </a>
+          <a class="mobile-drawer__link" href="#portfolio">
+            <span class="material-symbols-outlined" aria-hidden="true">collections</span>
+            <span>Portofolio</span>
+          </a>
+          <a class="mobile-drawer__link" href="#pricing">
+            <span class="material-symbols-outlined" aria-hidden="true">payments</span>
+            <span>Harga</span>
+          </a>
+          <a class="mobile-drawer__link" href="#faq">
+            <span class="material-symbols-outlined" aria-hidden="true">help</span>
+            <span>FAQ</span>
+          </a>
+          <a class="mobile-drawer__link" href="#ai-consultant" data-focus-chat="true">
+            <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+            <span>Konsultasi</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="site-main">
+      <!-- [TAG: DESIGN-SYSTEM] HERO -->
+      <section class="hero" id="hero" aria-labelledby="hero-heading">
+        <div class="hero__content container">
+          <div class="hero__copy">
+            <div class="hero__badge">
+              <span class="hero__status-dot" aria-hidden="true">
+                <span class="hero__status-dot-ping"></span>
+                <span class="hero__status-dot-core"></span>
+              </span>
+              <span class="hero__badge-text">Jasa website profesional · Indonesia</span>
+            </div>
+            <h1 id="hero-heading" class="hero__title">
+              Website Berkualitas untuk
+              <span class="hero__title-accent">Bisnis yang Ingin Tumbuh</span>
+            </h1>
+            <p class="hero__desc">
+              Dari landing page UMKM hingga toko online — kami bangun website cepat,
+              responsif, dan siap SEO. Konsultasi gratis, harga transparan, tanpa biaya tersembunyi.
+            </p>
+            <div class="hero__actions">
+              <button
+                type="button"
+                class="btn btn--primary btn--primary-lg"
+                data-scroll-target="#ai-consultant"
+                data-focus-chat="true"
+              >
+                Konsultasi Sekarang
+              </button>
+              <button
+                type="button"
+                class="btn btn--outline"
+                data-scroll-target="#pricing"
+              >
+                Lihat Paket Harga
+              </button>
+            </div>
+          </div>
+          <div class="hero__visual">
+            <div class="card-border hero__image-wrap">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT1-nIuW80OBcqkbVYfqI6wKTikYQ7bNH_HWFEm-pYimIJ-XORsKTsgFjC10jFur-sdBnr2qk5OoRh1mwEthCvve-0_sXkb-6FlO4LxYTAMrIP8OhOGfXA-5aU0ut7v6a42zFN19vuz0BqS9Zwur93LnrhNJCT8ju7-4JUPaPk6GiMU_-x90drQOcl8yvD_liEpCbOqKVADYDqtsyetD2_joEy1XeDg__5dX_oWBk3V9V9ytEy6DGaHrQmOllTTAhmyPnXPQTa_Ds"
+                alt="Contoh tampilan website profesional"
+                width="400"
+                height="400"
+                loading="lazy"
+              />
+              <p class="hero__image-caption">Hasil kerja tim Syntax Core</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- [TAG: DESIGN-SYSTEM] VALUE PROPOSITION -->
+      <section class="section section--contained" id="value-props">
+        <div class="section__header">
+          <div>
+            <h2 class="section__title">Kenapa Memilih Kami?</h2>
+            <p class="section__subtitle">
+              Solusi website yang mengutamakan kecepatan, kenyamanan pengunjung, dan kejelasan biaya
+            </p>
+          </div>
+        </div>
+        <div class="value-props__grid">
+          <article class="card-border value-prop">
+            <span class="value-prop__icon material-symbols-outlined" aria-hidden="true">bolt</span>
+            <h3 class="value-prop__title">Cepat Online</h3>
+            <p class="value-prop__desc">
+              Proses terstruktur agar website Anda bisa tayang lebih cepat tanpa mengorbankan kualitas.
+            </p>
+          </article>
+          <article class="card-border value-prop">
+            <span class="value-prop__icon material-symbols-outlined" aria-hidden="true">travel_explore</span>
+            <h3 class="value-prop__title">SEO Friendly</h3>
+            <p class="value-prop__desc">
+              Struktur halaman dan meta dasar disiapkan agar mudah ditemukan di Google.
+            </p>
+          </article>
+          <article class="card-border value-prop">
+            <span class="value-prop__icon material-symbols-outlined" aria-hidden="true">smartphone</span>
+            <h3 class="value-prop__title">Responsive</h3>
+            <p class="value-prop__desc">
+              Tampilan rapi di HP, tablet, dan laptop — penting karena mayoritas pengunjung pakai mobile.
+            </p>
+          </article>
+          <article class="card-border value-prop">
+            <span class="value-prop__icon material-symbols-outlined" aria-hidden="true">receipt_long</span>
+            <h3 class="value-prop__title">Harga Transparan</h3>
+            <p class="value-prop__desc">
+              Paket jelas dari awal. Tidak ada kejutan biaya di tengah jalan.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- [TAG: DESIGN-SYSTEM] PORTFOLIO -->
+      <section class="section section--alt" id="portfolio">
+        <div class="container">
+          <div class="section__header section__header--center">
+            <div>
+              <h2 class="section__title">Portofolio &amp; Contoh Hasil Kerja</h2>
+              <p class="section__subtitle section__subtitle--center">
+                Mockup proyek representatif — gaya visual disesuaikan dengan kebutuhan klien
+              </p>
+            </div>
+          </div>
+          <div class="portfolio__grid">
+            <article class="card-border portfolio-card">
+              <div class="portfolio-card__preview portfolio-card__preview--umkm">
+                <span class="portfolio-card__label">Landing Page UMKM</span>
+              </div>
+              <div class="portfolio-card__body">
+                <h3 class="portfolio-card__title">Kopi Nusantara</h3>
+                <p class="portfolio-card__desc">
+                  Halaman promosi untuk warung kopi lokal: menu, lokasi, dan tombol WhatsApp.
+                </p>
+                <span class="portfolio-card__tag">UMKM · Landing Page</span>
+              </div>
+            </article>
+            <article class="card-border portfolio-card">
+              <div class="portfolio-card__preview portfolio-card__preview--company">
+                <span class="portfolio-card__label">Company Profile</span>
+              </div>
+              <div class="portfolio-card__body">
+                <h3 class="portfolio-card__title">Solusi Digital Indonesia</h3>
+                <p class="portfolio-card__desc">
+                  Profil perusahaan lengkap: tentang kami, layanan, tim, dan formulir kontak.
+                </p>
+                <span class="portfolio-card__tag">Korporat · Multi-halaman</span>
+              </div>
+            </article>
+            <article class="card-border portfolio-card">
+              <div class="portfolio-card__preview portfolio-card__preview--ecommerce">
+                <span class="portfolio-card__label">E-Commerce</span>
+              </div>
+              <div class="portfolio-card__body">
+                <h3 class="portfolio-card__title">Fashion Hub Store</h3>
+                <p class="portfolio-card__desc">
+                  Katalog produk, keranjang, dan checkout sederhana untuk toko fashion online.
+                </p>
+                <span class="portfolio-card__tag">Toko Online · E-Commerce</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- [TAG: DESIGN-SYSTEM] PRICING -->
+      <section class="section section--contained" id="pricing">
+        <div class="section__header section__header--center">
+          <div>
+            <h2 class="section__title">Paket Harga Transparan</h2>
+            <p class="section__subtitle section__subtitle--center">
+              Pilih paket sesuai kebutuhan. Semua paket bisa dikonsultasikan ulang sebelum deal.
+            </p>
+          </div>
+        </div>
+        <div class="pricing__grid">
+          <article class="card-border pricing-card">
+            <span class="pricing-card__badge">Paling populer</span>
+            <h3 class="pricing-card__name">Paket Landing Page</h3>
+            <p class="pricing-card__price">
+              <span class="pricing-card__currency">Rp</span> 2,5 jt
+              <span class="pricing-card__period">/ proyek</span>
+            </p>
+            <ul class="pricing-card__features">
+              <li>1 halaman promosi lengkap</li>
+              <li>Desain responsif (HP &amp; desktop)</li>
+              <li>Integrasi WhatsApp / kontak</li>
+              <li>SEO dasar &amp; kecepatan optimal</li>
+            </ul>
+            <button
+              type="button"
+              class="btn btn--primary btn--block"
+              data-scroll-target="#ai-consultant"
+              data-focus-chat="true"
+              data-chat-prefill="Saya tertarik Paket Landing Page. Bisa jelaskan detailnya?"
+            >
+              Pilih Paket Ini
+            </button>
+          </article>
+          <article class="card-border pricing-card pricing-card--featured">
+            <span class="pricing-card__badge pricing-card__badge--neon">Rekomendasi</span>
+            <h3 class="pricing-card__name">Paket Company Profile</h3>
+            <p class="pricing-card__price">
+              <span class="pricing-card__currency">Rp</span> 5 jt
+              <span class="pricing-card__period">/ proyek</span>
+            </p>
+            <ul class="pricing-card__features">
+              <li>5–8 halaman (Beranda, Layanan, dll.)</li>
+              <li>Formulir kontak &amp; peta lokasi</li>
+              <li>Galeri / portofolio internal</li>
+              <li>Dukungan revisi terbatas</li>
+            </ul>
+            <button
+              type="button"
+              class="btn btn--primary btn--block"
+              data-scroll-target="#ai-consultant"
+              data-focus-chat="true"
+              data-chat-prefill="Saya ingin konsultasi Paket Company Profile untuk perusahaan saya."
+            >
+              Pilih Paket Ini
+            </button>
+          </article>
+          <article class="card-border pricing-card">
+            <h3 class="pricing-card__name">Paket Custom E-Commerce</h3>
+            <p class="pricing-card__price">
+              <span class="pricing-card__currency">Rp</span> 12 jt+
+              <span class="pricing-card__period">/ proyek</span>
+            </p>
+            <ul class="pricing-card__features">
+              <li>Katalog produk &amp; kategori</li>
+              <li>Keranjang &amp; alur pemesanan</li>
+              <li>Panel admin sederhana</li>
+              <li>Penawaran disesuaikan kebutuhan</li>
+            </ul>
+            <button
+              type="button"
+              class="btn btn--outline btn--block"
+              data-scroll-target="#ai-consultant"
+              data-focus-chat="true"
+              data-chat-prefill="Saya butuh website toko online (E-Commerce). Mohon estimasi dan fiturnya."
+            >
+              Konsultasi Custom
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <!-- [TAG: DESIGN-SYSTEM] AI CONSULTANT -->
+      <section class="section section--alt" id="ai-consultant">
+        <div class="container">
+          <div class="section__header section__header--center">
+            <div>
+              <h2 class="section__title">Konsultasi Otomatis</h2>
+              <p class="section__subtitle section__subtitle--center">
+                Tanya kebutuhan website Anda — asisten digital kami siap membantu 24 jam
+              </p>
+            </div>
+          </div>
+          <div class="ai-panel card-border">
+            <div class="ai-panel__head">
+              <div class="bento__avatar">
+                <span class="material-symbols-outlined" aria-hidden="true">smart_toy</span>
+              </div>
+              <div>
+                <h3 class="ai-panel__title">Asisten Syntax Core</h3>
+                <p class="ai-panel__desc">Simulasi jawaban instan · Tim manusia melanjutkan untuk penawaran resmi</p>
+              </div>
+            </div>
+            <div class="bento__actions">
+              <button
+                type="button"
+                class="btn btn--ghost"
+                data-scroll-target="#ai-consultant"
+                data-focus-chat="true"
+                data-chat-prefill="Saya baru mau buat website, belum tahu paket mana yang cocok."
+              >
+                <span>Belum tahu mau mulai dari mana</span>
+                <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+              </button>
+              <button
+                type="button"
+                class="btn btn--ghost"
+                data-scroll-target="#ai-consultant"
+                data-focus-chat="true"
+                data-chat-prefill="Berapa lama pengerjaan dan apakah termasuk hosting?"
+              >
+                <span>Tanya waktu &amp; hosting</span>
+                <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+              </button>
+            </div>
+            <div class="chat-panel">
+              <p class="chat-panel__hint">
+                <span class="material-symbols-outlined" aria-hidden="true">info</span>
+                Contoh: &ldquo;Saya punya toko batik, mau jualan online&rdquo;
+              </p>
+              <div id="chatBox" class="chat-box" role="log" aria-live="polite"></div>
+              <div class="chat-input-row">
+                <input
+                  type="text"
+                  id="userInput"
+                  class="chat-input"
+                  placeholder="Tulis pertanyaan Anda di sini..."
+                  autocomplete="off"
+                  aria-label="Pesan untuk asisten konsultasi"
+                />
+                <button type="button" id="sendBtn" class="btn btn--primary chat-send-btn">Kirim</button>
+              </div>
+            </div>
+            <p class="status-ticker" aria-live="polite">Layanan online — siap membantu Anda</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- [TAG: DESIGN-SYSTEM] FAQ -->
+      <section class="section section--contained" id="faq">
+        <div class="section__header section__header--center">
+          <div>
+            <h2 class="section__title">Pertanyaan yang Sering Diajukan</h2>
+            <p class="section__subtitle section__subtitle--center">
+              Klik pertanyaan untuk melihat jawaban
+            </p>
+          </div>
+        </div>
+        <div class="faq__list container container--narrow">
+          <div class="faq-item card-border">
+            <button
+              type="button"
+              class="faq-item__trigger"
+              aria-expanded="false"
+              aria-controls="faq-answer-1"
+              id="faq-trigger-1"
+            >
+              <span>Berapa lama pengerjaan website?</span>
+              <span class="material-symbols-outlined faq-item__icon" aria-hidden="true">expand_more</span>
+            </button>
+            <div class="faq-item__content" id="faq-answer-1" role="region" aria-labelledby="faq-trigger-1">
+              <p>
+                Landing page biasanya 2–3 minggu. Company profile 3–5 minggu. E-commerce custom
+                6–10 minggu tergantung jumlah fitur. Timeline pasti dijelaskan setelah konsultasi.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item card-border">
+            <button
+              type="button"
+              class="faq-item__trigger"
+              aria-expanded="false"
+              aria-controls="faq-answer-2"
+              id="faq-trigger-2"
+            >
+              <span>Apakah sudah termasuk hosting &amp; domain?</span>
+              <span class="material-symbols-outlined faq-item__icon" aria-hidden="true">expand_more</span>
+            </button>
+            <div class="faq-item__content" id="faq-answer-2" role="region" aria-labelledby="faq-trigger-2">
+              <p>
+                Bisa kami bantu urus hosting dan domain dengan biaya terpisah yang transparan,
+                atau Anda gunakan provider sendiri — tim kami bantu proses instalasinya.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item card-border">
+            <button
+              type="button"
+              class="faq-item__trigger"
+              aria-expanded="false"
+              aria-controls="faq-answer-3"
+              id="faq-trigger-3"
+            >
+              <span>Apakah bisa request revisi?</span>
+              <span class="material-symbols-outlined faq-item__icon" aria-hidden="true">expand_more</span>
+            </button>
+            <div class="faq-item__content" id="faq-answer-3" role="region" aria-labelledby="faq-trigger-3">
+              <p>
+                Ya. Setiap paket mencakup putaran revisi sesuai kesepakatan di awal. Perubahan besar
+                di luar scope akan didiskusikan terlebih dahulu.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item card-border">
+            <button
+              type="button"
+              class="faq-item__trigger"
+              aria-expanded="false"
+              aria-controls="faq-answer-4"
+              id="faq-trigger-4"
+            >
+              <span>Bagaimana cara memulai proyek?</span>
+              <span class="material-symbols-outlined faq-item__icon" aria-hidden="true">expand_more</span>
+            </button>
+            <div class="faq-item__content" id="faq-answer-4" role="region" aria-labelledby="faq-trigger-4">
+              <p>
+                Klik &ldquo;Konsultasi Gratis&rdquo;, isi chat di atas, atau pilih paket harga.
+                Tim kami akan menghubungi Anda untuk briefing singkat dan penawaran resmi.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- [TAG: DESIGN-SYSTEM] CTA akhir -->
+      <section class="cta">
+        <div class="cta__inner container">
+          <h2 class="cta__title">Siap Wujudkan Website Impian Anda?</h2>
+          <p class="cta__desc">
+            Konsultasi pertama gratis. Ceritakan kebutuhan bisnis Anda hari ini.
+          </p>
+          <button
+            type="button"
+            class="btn btn--cta"
+            data-scroll-target="#ai-consultant"
+            data-focus-chat="true"
+          >
+            Mulai Konsultasi Gratis
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- [TAG: DESIGN-SYSTEM] Footer -->
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <div>
+          <div class="site-footer__brand">Syntax Core</div>
+          <p class="site-footer__copy">
+            © 2024 Syntax Core. Jasa pembuatan website profesional untuk bisnis di Indonesia.
+          </p>
+        </div>
+        <nav class="site-footer__nav" aria-label="Footer">
+          <a href="#pricing">Harga</a>
+          <a href="#portfolio">Portofolio</a>
+          <a href="#faq">FAQ</a>
+          <a href="#ai-consultant" data-focus-chat="true">Konsultasi</a>
+        </nav>
+        <div class="site-footer__social" aria-label="Media sosial">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <span class="material-symbols-outlined" aria-hidden="true">photo_camera</span>
+          </a>
+          <a href="https://wa.me" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <span class="material-symbols-outlined" aria-hidden="true">work</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
