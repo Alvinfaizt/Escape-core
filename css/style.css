@@ -102,8 +102,8 @@ body::before {
   transform: translateX(-50%);
   width: 150vw;
   height: 80vh;
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, rgba(0, 229, 255, 0) 65%);
-  filter: blur(140px);
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.2) 0%, rgba(0, 229, 255, 0) 70%);
+  filter: blur(120px);
   z-index: -1;
   pointer-events: none;
 }
