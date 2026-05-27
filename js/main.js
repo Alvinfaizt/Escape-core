@@ -312,15 +312,31 @@ function removeTypingIndicator() {
   if (typing) typing.remove();
 }
 
-// [TAG: VANILLA-LOGIC] Placeholder API — setTimeout sebelum integrasi ai-agent.js
-function simulateAiResponse() {
+// [TAG: VANILLA-LOGIC] Rule-based keyword matching chatbot for offline simulation (excellent for learning)
+function simulateAiResponse(userQuery) {
   return new Promise((resolve) => {
-    const reply = AI_SIMULATED_REPLIES[aiReplyIndex % AI_SIMULATED_REPLIES.length];
-    aiReplyIndex += 1;
+    const query = userQuery.toLowerCase();
+    let reply = "";
+
+    if (query.includes("harga") || query.includes("biaya") || query.includes("paket") || query.includes("bayar")) {
+      reply = "Kami memiliki 3 paket utama: Paket Landing Page (Rp 2,5 jt), Paket Company Profile (Rp 5 jt), dan Paket Custom E-Commerce (Rp 12 jt+). Anda bisa melihat detailnya di bagian 'Harga' di atas.";
+    } else if (query.includes("lama") || query.includes("waktu") || query.includes("durasi") || query.includes("hari") || query.includes("minggu")) {
+      reply = "Untuk Landing Page pengerjaannya sekitar 3-7 hari. Company Profile dinamis memakan waktu 1-2 minggu, dan E-Commerce/Custom Web Apps memakan waktu 2-4 minggu atau lebih tergantung kompleksitas.";
+    } else if (query.includes("portfolio") || query.includes("portofolio") || query.includes("contoh") || query.includes("karya")) {
+      reply = "Kami telah mengerjakan beberapa jenis web seperti website UMKM (Kopi Nusantara), website korporat (Solusi Digital Indonesia), dan e-commerce (Fashion Hub Store). Cek bagian 'Portofolio' untuk melihat demonya.";
+    } else if (query.includes("hosting") || query.includes("domain") || query.includes("server")) {
+      reply = "Semua paket website yang kami buat sudah termasuk gratis domain (.com atau .id) dan cloud hosting berkecepatan tinggi untuk tahun pertama.";
+    } else if (query.includes("booking") || query.includes("reservasi") || query.includes("jadwal") || query.includes("konsultasi")) {
+      reply = "Untuk menjadwalkan konsultasi atau reservasi, Anda bisa menekan tombol 'Hubungi Tim Developer via WhatsApp' di footer atau langsung mengisi form pemesanan resmi kami.";
+    } else {
+      // Fallback to rotation of standard tips
+      reply = AI_SIMULATED_REPLIES[aiReplyIndex % AI_SIMULATED_REPLIES.length];
+      aiReplyIndex += 1;
+    }
 
     window.setTimeout(() => {
       resolve(reply);
-    }, 1500);
+    }, 1200);
   });
 }
 
@@ -358,7 +374,7 @@ async function handleSendMessage() {
   showTypingIndicator();
 
   try {
-    const reply = await simulateAiResponse();
+    const reply = await simulateAiResponse(text);
     removeTypingIndicator();
     chatBox.appendChild(createChatBubble(reply, "ai"));
   } catch {
@@ -449,6 +465,41 @@ export function initFaqAccordion() {
  * [TAG: VANILLA-LOGIC] Boot — inisialisasi semua modul UI
  * ───────────────────────────────────────────────────────────── */
 
+// [TAG: VANILLA-LOGIC] Active Nav Highlight on Scroll using IntersectionObserver (excellent performance)
+export function initActiveNavOnScroll() {
+  const sections = document.querySelectorAll("section[id], header[id], footer[id]");
+  const navLinks = document.querySelectorAll(".site-header__nav a[href^='#']");
+  const mobileLinks = document.querySelectorAll(".mobile-drawer__nav a[href^='#']");
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "-40% 0px -50% 0px", // Trigger when section occupies the active viewing area
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute("id");
+        
+        // Update desktop links
+        navLinks.forEach((link) => {
+          const isMatch = link.getAttribute("href") === `#${id}`;
+          link.classList.toggle("is-active", isMatch);
+        });
+
+        // Update mobile links
+        mobileLinks.forEach((link) => {
+          const isMatch = link.getAttribute("href") === `#${id}`;
+          link.classList.toggle("mobile-drawer__link--active", isMatch);
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach((section) => observer.observe(section));
+}
+
 // [TAG: VANILLA-LOGIC]
 function init() {
   initMicroInteractions();
@@ -459,6 +510,7 @@ function init() {
   initAiConsultantTriggers();
   initChatbox();
   initFaqAccordion();
+  initActiveNavOnScroll();
 }
 
 if (document.readyState === "loading") {
