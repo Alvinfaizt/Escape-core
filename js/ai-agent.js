@@ -1,96 +1,77 @@
-/*
- * [TAG: ARCHITECTURE] ai-agent.js — Integrasi API AI (Fetch, async/await)
- *
- * Legenda:
- *   [TAG: AI-CORE]     Fungsi komunikasi ke backend AI
- *   [TAG: CONFIG]      Endpoint, timeout, tipe data payload
- *
- * Digunakan nanti oleh main.js menggantikan simulateAiResponse()
- * Saat ini chat masih simulasi setTimeout di main.js
- */
+// [TAG: AI-CORE]
 
-/* [TAG: CONFIG] URL default backend — sesuaikan saat deploy */
+/**
+ * [TAG: CONFIG] System Instruction / Role definition for the AI agent
+ */
+export const AI_SYSTEM_PROMPT = `Anda adalah 'DevStudio AI Consultant', Senior IT Business Analyst dan Customer Service profesional dari agensi pembuatan website premium. 
+Tugas Anda: Analisis bisnis user, tentukan jenis web (Statis/Dinamis/E-Commerce), sebutkan 3-4 fitur wajib, berikan estimasi waktu & harga industri yang logis (Landing Page 3-7 hari, Company Profile 1-2 minggu, E-Commerce 2-4 minggu), dan berikan penolakan halus jika di luar topik web. Jawab dengan struktur poin yang rapi dan bahasa Indonesia yang ramah.`;
+
+/**
+ * [TAG: CONFIG] Default server endpoint configuration.
+ * Change this path when deploying to a live server.
+ */
 const DEFAULT_ENDPOINT = "/api/ai/consult";
 
-/* [TAG: CONFIG] Batas waktu tunggu respons (ms) */
-const DEFAULT_TIMEOUT_MS = 30_000;
+/**
+ * [TAG: CONFIG] Timeout limit for the network request (ms)
+ */
+const DEFAULT_TIMEOUT_MS = 20000;
 
 /**
- * [TAG: CONFIG] Bentuk data yang dikirim ke server
- * @typedef {Object} ConsultPayload
- * @property {string} [action] - Mis. "analyze" | "estimate"
- * @property {string} [context] - Konteks halaman / sesi
- * @property {string} [prompt] - Pertanyaan pengguna dari #userInput
+ * [TAG: AI-CORE] sendPayloadToAI
+ * Sends user message to the AI Consultant backend endpoint with system prompt instructions.
+ * 
+ * @param {string} userMessage - Message sent by the user
+ * @param {string} [endpoint=DEFAULT_ENDPOINT] - Target URL endpoint
+ * @returns {Promise<string>} AI response text
  */
-
-/**
- * [TAG: CONFIG] Opsi override per panggilan
- * @typedef {Object} AgentOptions
- * @property {string} [endpoint]
- * @property {AbortSignal} [signal]
- * @property {Record<string, string>} [headers]
- */
-
-/* ─────────────────────────────────────────────────────────────
- * [TAG: AI-CORE] consultAgent — POST JSON ke endpoint konsultasi
- * ───────────────────────────────────────────────────────────── */
-
-// [TAG: AI-CORE]
-export async function consultAgent(payload = {}, options = {}) {
-  const { endpoint = DEFAULT_ENDPOINT, signal, headers = {} } = options;
-
+export async function sendPayloadToAI(userMessage, endpoint = DEFAULT_ENDPOINT) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), DEFAULT_TIMEOUT_MS);
-  const mergedSignal = signal ?? controller.signal;
 
   try {
     const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
-        ...headers,
+        "Accept": "application/json",
       },
       body: JSON.stringify({
-        action: payload.action ?? "analyze",
-        context: payload.context ?? "escape-core-landing",
-        prompt: payload.prompt ?? "",
+        systemInstruction: AI_SYSTEM_PROMPT,
+        prompt: userMessage,
+        context: "escape-core-landing",
         timestamp: new Date().toISOString(),
       }),
-      signal: mergedSignal,
+      signal: controller.signal,
     });
 
+    clearTimeout(timeoutId);
+
     if (!response.ok) {
-      const errorBody = await response.text().catch(() => "");
-      throw new Error(
-        `AI Agent error ${response.status}: ${errorBody || response.statusText}`
-      );
+      const errorText = await response.text().catch(() => "");
+      throw new Error(`AI Agent error ${response.status}: ${errorText || response.statusText}`);
     }
 
-    return response.json();
+    const data = await response.json();
+    
+    // Support multiple common API response structures (universal parser)
+    if (data.reply) return data.reply;
+    if (data.text) return data.text;
+    if (data.choices && data.choices[0] && data.choices[0].message) {
+      return data.choices[0].message.content;
+    }
+    if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+      return data.candidates[0].content.parts[0].text;
+    }
+    
+    // Fallback if structure is simple string or alternative text field
+    return data.message || data.response || JSON.stringify(data);
+
   } catch (error) {
+    clearTimeout(timeoutId);
     if (error.name === "AbortError") {
-      throw new Error("AI Agent request timed out or was aborted.");
+      throw new Error("Koneksi ke asisten AI terputus (Timeout). Silakan coba lagi.");
     }
     throw error;
-  } finally {
-    clearTimeout(timeoutId);
   }
-}
-
-/* ─────────────────────────────────────────────────────────────
- * [TAG: AI-CORE] pingAgent — cek ketersediaan API sebelum chat
- * ───────────────────────────────────────────────────────────── */
-
-// [TAG: AI-CORE]
-export async function pingAgent(options = {}) {
-  const { endpoint = DEFAULT_ENDPOINT, headers = {} } = options;
-  const url = endpoint.replace(/\/consult\/?$/, "/health");
-
-  const response = await fetch(url, {
-    method: "GET",
-    headers: { Accept: "application/json", ...headers },
-  });
-
-  return response.ok;
 }
