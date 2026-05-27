@@ -1,12 +1,6 @@
 // [TAG: AI-CORE]
 
 /**
- * [TAG: CONFIG] System Instruction / Role definition for the AI agent
- */
-export const AI_SYSTEM_PROMPT = `Anda adalah 'DevStudio AI Consultant', Senior IT Business Analyst dan Customer Service profesional dari agensi pembuatan website premium. 
-Tugas Anda: Analisis bisnis user, tentukan jenis web (Statis/Dinamis/E-Commerce), sebutkan 3-4 fitur wajib, berikan estimasi waktu & harga industri yang logis (Landing Page 3-7 hari, Company Profile 1-2 minggu, E-Commerce 2-4 minggu), dan berikan penolakan halus jika di luar topik web. Jawab dengan struktur poin yang rapi dan bahasa Indonesia yang ramah.`;
-
-/**
  * [TAG: CONFIG] Default server endpoint configuration.
  * Change this path when deploying to a live server.
  */
@@ -26,6 +20,10 @@ const DEFAULT_TIMEOUT_MS = 20000;
  * @returns {Promise<string>} AI response text
  */
 export async function sendPayloadToAI(userMessage, endpoint = DEFAULT_ENDPOINT) {
+  // [TAG: CONFIG] System Instruction / Role definition for the AI agent
+  const AI_SYSTEM_PROMPT = `Anda adalah 'DevStudio AI Consultant', Senior IT Business Analyst dan Customer Service profesional dari agensi pembuatan website premium. 
+Tugas Anda: Analisis bisnis user, tentukan jenis web (Statis/Dinamis/E-Commerce), sebutkan 3-4 fitur wajib, berikan estimasi waktu & harga industri yang logis (Landing Page 3-7 hari, Company Profile 1-2 minggu, E-Commerce 2-4 minggu), dan berikan penolakan halus jika di luar topik web. Jawab dengan struktur poin yang rapi dan bahasa Indonesia yang ramah.`;
+
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), DEFAULT_TIMEOUT_MS);
 

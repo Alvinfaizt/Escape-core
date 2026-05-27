@@ -1,3 +1,6 @@
+// [TAG: VANILLA-LOGIC]
+import { sendPayloadToAI } from './ai-agent.js';
+
 /*
  * [TAG: ARCHITECTURE] main.js — Entry point interaksi UI (Vanilla JS, ES Module)
  *
@@ -358,8 +361,8 @@ async function handleSendMessage() {
   const chatBox = document.getElementById("chatBox");
   if (!input || !chatBox || isChatBusy) return;
 
-  const text = input.value.trim();
-  if (!text) {
+  const pesanUser = input.value.trim();
+  if (!pesanUser) {
     input.focus();
     input.classList.add("chat-input--error");
     window.setTimeout(() => input.classList.remove("chat-input--error"), 600);
@@ -367,16 +370,16 @@ async function handleSendMessage() {
   }
 
   setChatBusy(true);
-  chatBox.appendChild(createChatBubble(text, "user"));
+  chatBox.appendChild(createChatBubble(pesanUser, "user"));
   input.value = "";
   scrollChatToBottom();
 
   showTypingIndicator();
 
   try {
-    const reply = await simulateAiResponse(text);
+    const jawabanAI = await sendPayloadToAI(pesanUser);
     removeTypingIndicator();
-    chatBox.appendChild(createChatBubble(reply, "ai"));
+    chatBox.appendChild(createChatBubble(jawabanAI, "ai"));
   } catch {
     removeTypingIndicator();
     chatBox.appendChild(
